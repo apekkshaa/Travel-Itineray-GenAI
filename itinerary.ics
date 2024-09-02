@@ -1,0 +1,76 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:ics.py - http://git.io/lLljaA
+BEGIN:VEVENT
+DESCRIPTION:Embark on a culinary adventure through the vibrant streets of Old Delhi\, sampling an array of iconic street food delicacies like chaat\, samosas\, and parathas.
+DTEND:20240902T120000Z
+LOCATION:Chandni Chowk\, Old Delhi
+DTSTART:20240902T100000Z
+SUMMARY:Street Food Tour in Old Delhi
+UID:c70ebeb5-7d0d-4fb6-ab8a-654b181b82bb@c70e.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Immerse yourself in the sensory overload of the Spice Market\, where you'll encounter a vibrant array of colorful spices and aromas.
+DTEND:20240902T120000Z
+LOCATION:Khari Baoli\, Old Delhi
+DTSTART:20240902T100000Z
+SUMMARY:Explore the Spice Market
+UID:535e0256-63c6-4903-a0f7-9f5a92e7cbce@535e.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Indulge in a delicious and authentic Mughlai feast at Karim's\, a renowned restaurant in Old Delhi known for its flavorful kebabs and curries.
+DTEND:20240902T120000Z
+LOCATION:Karim's\, Old Delhi
+DTSTART:20240902T100000Z
+SUMMARY:Dinner at Karim's
+UID:f83be308-98e4-4a60-a286-1ab9d216e3fc@f83b.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Experience the grandeur of Jama Masjid\, one of the largest mosques in India\, and marvel at its intricate architecture.
+DTEND:20240902T120000Z
+LOCATION:Jama Masjid\, Old Delhi
+DTSTART:20240902T100000Z
+SUMMARY:Visit Jama Masjid
+UID:66bc7e42-279c-4667-aa17-cc3d1c800694@66bc.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Admire the majestic India Gate\, a war memorial dedicated to the Indian soldiers who died in World War I.
+DTEND:20240902T120000Z
+LOCATION:India Gate\, New Delhi
+DTSTART:20240902T100000Z
+SUMMARY:Visit the India Gate
+UID:a2ff4c20-179b-4736-a3dd-e53bd8fdb79e@a2ff.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Take a leisurely walk through Lodhi Garden\, a serene green space with beautiful tombs and lush greenery.
+DTEND:20240902T120000Z
+LOCATION:Lodhi Garden\, New Delhi
+DTSTART:20240902T100000Z
+SUMMARY:Relax at Lodhi Garden
+UID:fa0d952f-c677-40fd-9ef9-e05d44c7e211@fa0d.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Enjoy a budget-friendly and authentic Indian meal at a local Dhaba\, savoring flavorful curries\, rotis\, and dal.
+DTEND:20240902T120000Z
+LOCATION:Near India Gate\, New Delhi
+DTSTART:20240902T100000Z
+SUMMARY:Lunch at a Local Dhaba
+UID:22cd5541-8dd6-47d1-a88a-a5235288793a@22cd.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Experience the vibrant street food scene in Khan Market\, sampling a variety of cuisines and flavors.
+DTEND:20240902T120000Z
+LOCATION:Khan Market\, New Delhi
+DTSTART:20240902T100000Z
+SUMMARY:Street Food Dinner in Khan Market
+UID:646f8a87-885d-4a3c-8a19-1a9097f42c4b@646f.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:Stroll through the iconic Connaught Place\, a bustling commercial hub with charming cafes\, shops\, and restaurants.
+DTEND:20240902T120000Z
+LOCATION:Connaught Place\, New Delhi
+DTSTART:20240902T100000Z
+SUMMARY:Explore Connaught Place
+UID:098baa33-6a64-494f-9125-99894c0d7add@098b.org
+END:VEVENT
+END:VCALENDAR
