@@ -149,9 +149,9 @@ st.title("Personalized Travel Itinerary Generator")
 city = st.text_input("City")
 start_date = st.date_input("Start Date")
 end_date = st.date_input("End Date")
-budget = st.number_input(f"Budget ({CURRENCY})", min_value=0, value=1000)
+budget = st.number_input(f"Budget ({CURRENCY})", min_value=0, value=0)
 interests = st.text_area("Interests (e.g., art, museums, outdoor activities)")
-duration = st.number_input("Trip Duration (days)", min_value=1, value=3)
+duration = st.number_input("Trip Duration (days)", min_value=1, value=0)
 
 if st.button("Generate Itinerary"):
     if city and start_date and end_date:
