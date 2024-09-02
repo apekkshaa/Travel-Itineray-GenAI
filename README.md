@@ -3,6 +3,7 @@
 ## Overview
 
 The Personalized Travel Itinerary Generator is a web application designed to create customized travel itineraries based on user preferences. Users can input their budget, interests, trip duration, and destination to receive a detailed, dynamic itinerary. The app also offers functionality to export the itinerary as an iCalendar file for easy integration with calendar applications.
+[Live Website](https://travel-itineray-genai-nfkaxijsegvuw4bgwmbbuu.streamlit.app)
 
 ## Features
 
