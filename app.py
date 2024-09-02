@@ -3,6 +3,7 @@ import google.generativeai as genai
 from ics import Calendar, Event
 import json
 import re
+import io
 
 # Initialize the Google PaLM API client
 try:
@@ -90,11 +91,14 @@ def create_icalendar(events):
         cal.events.add(e)
 
     try:
-        # Save calendar to file
-        with open('itinerary.ics', 'w') as f:
-            f.write(str(cal))
+        # Save calendar to a bytes buffer
+        ical_buffer = io.StringIO()
+        ical_buffer.write(str(cal))
+        ical_buffer.seek(0)
+        return ical_buffer
     except Exception as e:
         st.error(f"Error creating calendar file: {e}")
+        return None
 
 
 def display_itinerary(itinerary):
@@ -176,8 +180,15 @@ if st.button("Generate Itinerary"):
                     }
                     events.append(event)
 
-            create_icalendar(events)
-            st.success("Itinerary generated and saved as 'itinerary.ics'")
+            ical_buffer = create_icalendar(events)
+            if ical_buffer:
+                st.download_button(
+                    label="Download Itinerary (.ics)",
+                    data=ical_buffer.getvalue(),
+                    file_name='itinerary.ics',
+                    mime='text/calendar'
+                )
+                st.success("Itinerary generated and ready for download.")
         else:
             st.error("Could not generate itinerary. Please try again.")
     else:
