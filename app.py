@@ -5,7 +5,6 @@ import json
 import re
 import io
 
-# Initialize the Google PaLM API client
 try:
     api_key = st.secrets["general"]["PALM_API_KEY"]
     genai.configure(api_key=api_key)
@@ -16,7 +15,6 @@ except Exception as e:
     st.error(f"Error initializing API client: {e}")
     st.stop()
 
-# Define a constant for currency
 CURRENCY = "USD"
 
 
@@ -34,9 +32,8 @@ def generate_itinerary(city, start_date, end_date, budget, interests, duration):
     try:
         model = genai.GenerativeModel('gemini-1.5-flash')
         response = model.generate_content(prompt)
-        raw_response = response.text.strip()  # Remove leading/trailing whitespace
+        raw_response = response.text.strip()
 
-        # Extract JSON-like structure from the raw response using regex
         json_match = re.search(r"\{.*\}", raw_response, re.DOTALL)
 
         if json_match:
@@ -59,24 +56,20 @@ def generate_itinerary(city, start_date, end_date, budget, interests, duration):
 
 
 def parse_cost(cost_str):
-    # Handle cases where the cost is specified as "free" or similar
     if cost_str.lower() in ['free', 'no cost', 'complimentary']:
         return 0.0
-
-    # Handle cases where the cost is specified as "variable" or "unknown"
     if 'variable' in cost_str.lower():
-        return 'Variable'  # Return a string indicating variable cost
+        return 'Variable'
     elif 'unknown' in cost_str.lower():
-        return 'Unknown'  # Return a string indicating unknown cost
+        return 'Unknown'
 
-    # Remove any non-numeric characters except for the decimal point
     cost_str = re.sub(r'[^\d.]+', '', cost_str)
     try:
         return float(cost_str)
     except ValueError:
         st.warning(f"Invalid cost format detected. Received: {
                    cost_str}. Setting as Unknown.")
-        return 'Unknown'  # Default to unknown for non-parsable values
+        return 'Unknown'
 
 
 def create_icalendar(events):
@@ -91,7 +84,6 @@ def create_icalendar(events):
         cal.events.add(e)
 
     try:
-        # Save calendar to a bytes buffer
         ical_buffer = io.StringIO()
         ical_buffer.write(str(cal))
         ical_buffer.seek(0)
@@ -105,9 +97,9 @@ def display_itinerary(itinerary):
     st.header("Your Personalized Itinerary")
 
     if 'itinerary' in itinerary:
-        total_cost = 0  # Initialize total cost
-        variable_costs = False  # Track if there are variable costs
-        unknown_costs = False  # Track if there are unknown costs
+        total_cost = 0
+        variable_costs = False
+        unknown_costs = False
         for day_info in itinerary.get('itinerary', []):
             st.subheader(day_info.get('day', 'Unknown Day'))
             for activity in day_info.get('activities', []):
@@ -117,13 +109,12 @@ def display_itinerary(itinerary):
                 st.markdown(activity.get('description', 'No Description'))
                 cost = activity.get('cost', 'Not Provided')
 
-                # Parse and update total cost
                 parsed_cost = parse_cost(cost)
                 if parsed_cost == 'Variable':
-                    variable_costs = True  # Mark that there's a variable cost
+                    variable_costs = True
                     st.markdown(f"Cost: Variable")
                 elif parsed_cost == 'Unknown':
-                    unknown_costs = True  # Mark that there's an unknown cost
+                    unknown_costs = True
                     st.markdown(f"Cost: Unknown")
                 elif parsed_cost is None:
                     st.markdown("Cost: Unknown")
@@ -132,11 +123,7 @@ def display_itinerary(itinerary):
                     st.markdown(f"Cost: {parsed_cost} {CURRENCY}")
 
                 st.markdown("---")
-
-        # Display total estimated cost
         st.subheader(f"Estimated Total Cost: ${total_cost:.2f}")
-
-        # Inform user about variable and unknown costs if any
         if variable_costs:
             st.warning(
                 "Some activities have variable costs, which are not included in the total cost estimate.")
@@ -146,8 +133,6 @@ def display_itinerary(itinerary):
     else:
         st.warning("No itinerary data available to display.")
 
-
-# Streamlit app layout
 st.title("Personalized Travel Itinerary Generator")
 
 city = st.text_input("City")
@@ -163,17 +148,13 @@ if st.button("Generate Itinerary"):
             city, start_date, end_date, budget, interests, duration)
 
         if itinerary:
-            display_itinerary(itinerary)  # Display the itinerary
-
-            # Convert itinerary to a list of events (example format based on API response)
+            display_itinerary(itinerary)
             events = []
             for day in itinerary.get('itinerary', []):
                 for activity in day.get('activities', []):
                     event = {
                         "title": activity.get('title', 'No Title'),
-                        # Placeholder timing
                         "start_time": f"{start_date}T10:00:00",
-                        # Placeholder timing
                         "end_time": f"{start_date}T12:00:00",
                         "description": activity.get('description', 'No Description'),
                         "location": activity.get('location', 'No Location')
